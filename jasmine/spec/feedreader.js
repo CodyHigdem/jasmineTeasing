@@ -73,17 +73,17 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it('has visibility cloak by click', function() {
-            //Expect menu display when clicked
-            $('.menu-icon-link').click();
-            expect(hiddenMenu).toBe(true);
-            //expect to hide when clicked again
-            $('.menu-icon-link').click();
-            expect(hiddenMenu).toBe(true);
+            //when clicked, menu-hidden is no longer there
+            menuIcon.click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            //when clicked again, menu-hidden class returns
+            menuIcon.click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
 
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
-
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -91,10 +91,38 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-    /* TODO: Write a new test suite named "New Feed Selection"
-
+         //beforeEach
+         beforeEach(function(done){
+            //thisshould load the first feed?
+            //
+            loadFeed(0,done);
+         });
+         //after it's done
+         it('has one entry', function(done){
+            entries = $('.feed').find('.entry').length;
+            expect(entries).toBeGreaterThan(0);
+            //it's not clear if done() should be here up up in loadFeed before each area
+            done()
+         });
+    });
+    /* TODO: Write a new test suite named "New Feed Selection"*/
+    describe('New Feed Selection', function(){
+        var oldCount = $('.feed').find('.entry').length;
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        //beforeEach
+         beforeEach(function(done){
+            //thisshould load the first feed?
+            //
+            loadFeed(0,done);
+         });
+        it('loads the feed', function(done){
+            var currentCount = $('.feed').find('.entry').length;
+
+            expect(currentCount).not.toEqual(oldCount);
+            done();
+        })
+     });
 }());

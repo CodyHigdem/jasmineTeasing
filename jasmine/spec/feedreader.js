@@ -111,16 +111,23 @@ $(function() {
          */
 
         beforeEach(function(done) {
+            /* Nested functions
+            * For some reason this was the only way
+            * To get this to work. I attempted loadFeed0 than 1 and it broke down
+            * This is to test the differences between .feed for id 0 and .feed for id 1
+            */
+
             loadFeed(0, function() {
                 //doc pull using query selector???
                 firstFeed = document.querySelector('.feed').innerHTML;
+                //console.log(firstFeed);
+                //run the next function
+                loadFeed(1, function() {
+                    nextFeed = document.querySelector('.feed').innerHTML;
+                    //console.log(nextFeed);
+                    done(); //don't forget the done! -.-
+                });
             });
-            //run the
-            loadFeed(1, function() {
-                nextFeed = document.querySelector('.feed').innerHTML;
-
-            });
-            done(); //don't forget the done! -.-
         });
 
         it('has different content loaded', function(done) {

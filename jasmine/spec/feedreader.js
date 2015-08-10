@@ -97,31 +97,6 @@ $(function() {
     });
     /* suite "New Feed Selection"*/
     describe('New Feed Selection', function() {
-
-/*
-
-Declare variables to assign contents.
-Call loadFeed in the beforeEach with an id(for example 0).
-Call another loadFeed with a new id(for example 1).
-Call done.
-Compare contents in it statement.
-You need to figure out where you can declare
-variables,
-assign contents to them,
- and call done.
- The way of getting contents(instead of length) is another problem.
-  Take your time and try some code:) Keep up the good work!
-*/
-
-        //assign varaibles to content
-        // call loadFeed in the beforeEach with an id 0
-
-        //call another loadFeed with a new id 1
-
-        //call done
-
-        //compare contents in statements
-
         //they should not equal each other
 
 
@@ -129,19 +104,37 @@ assign contents to them,
         var oldCount = $('.feed').find('.entry').length;
         /* This test checks when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
          */
-        //beforeEach
+
+        /*
+        * beforeEach to load content for the beginning and second
+        * assign varaibles to content
+        * call loadFeed in the beforeEach with an id 0
+        */
         beforeEach(function(done) {
             //thisshould load the first feed?
-            //
-            loadFeed(0, done);
+            //assign varaibles to content
+            var firstFeed= loadFeed(0, done);
+            //call another loadFeed with a new id 1
+            var nextFeed = loadFeed(1,done);
+            //call done
+            done();
         });
+
+
+
+
         it('loads the feed', function(done) {
             var currentCount = $('.feed').find('.entry').length;
+            //compare contents in statements
 
             expect(currentCount).not.toEqual(oldCount);
             done();
         });
+
+         it('should not match', function() {
+            expect(firstFeed).not.toEqual(nextFeed);
+         });
+
     });
 }());

@@ -38,7 +38,7 @@ $(function() {
          * and that the name is not empty.
          */
         it('has a name', function() {
-            allFeeds.forEach(function(feed){
+            allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
             });
@@ -101,40 +101,32 @@ $(function() {
         var firstFeed, nextFeed;
         //Psuedo code
         /* Attempting to check if the loadFeed is loading different content
-        * A few ways to do this is to check content like the headlines, the feed cycle itself
-        * Let's run two loadFeed functions. The first is using id 0, then assign it to firstFeed
-        * I tried using Jquery to select headlines at first but I kept running into some issues
-        * so instead I'm just going to run a doc.innerHTML
-        * The docs suggests I could use .feed or entry.
-        * since I was using entry last time and it wasn't really working. I'm going to use .feed
-        * Then let's run another loadFeed using id 1 and assigne secondFeed the same way as the firstFeed
-        */
+         * A few ways to do this is to check content like the headlines, the feed cycle itself
+         * Let's run two loadFeed functions. The first is using id 0, then assign it to firstFeed
+         * I tried using Jquery to select headlines at first but I kept running into some issues
+         * so instead I'm just going to run a doc.innerHTML
+         * The docs suggests I could use .feed or entry.
+         * since I was using entry last time and it wasn't really working. I'm going to use .feed
+         * Then let's run another loadFeed using id 1 and assigne secondFeed the same way as the firstFeed
+         */
 
-    beforeEach(function(done){
-      loadFeed(0, function(){
-        //doc pull using query selector???
-        firstFeed = document.querySelector('.feed').innerHTML;
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                //doc pull using query selector???
+                firstFeed = document.querySelector('.feed').innerHTML;
+            });
+            //run the
+            loadFeed(1, function() {
+                nextFeed = document.querySelector('.feed').innerHTML;
 
-        loadFeed(1, function(){
-            secondFeed = document.querySelector('.feed').innerHTML;
+            });
             done(); //don't forget the done! -.-
         });
-      });
+
+        it('has different content loaded', function(done) {
+            expect(firstFeed).not.toBe(nextFeed);
+            done();
+        });
     });
 
-    it('has different content loaded', function(done){
-      console.log(document.querySelector('.feed').innerHTML);
-
-      expect(firstFeed).not.toBe(secondFeed);
-      done();
-    });
-  });
-
-
-
-
-
-
-
-
-    });
+});

@@ -95,8 +95,41 @@ $(function() {
             done();
         });
     });
-    /* This test suite "New Feed Selection"*/
+    /* suite "New Feed Selection"*/
     describe('New Feed Selection', function() {
+
+/*
+        It looks like you misunderstand some concepts of this suite.
+         In this suite, you are expected to check contents actually change after loading feeds.
+          It means you need to compare contents like DOM after calling loadFeed with different ids.
+           For example:
+
+Declare variables to assign contents.
+Call loadFeed in the beforeEach with an id(for example 0).
+Call another loadFeed with a new id(for example 1).
+Call done.
+Compare contents in it statement.
+You need to figure out where you can declare
+variables,
+assign contents to them,
+ and call done.
+ The way of getting contents(instead of length) is another problem.
+  Take your time and try some code:) Keep up the good work!
+*/
+
+        //assign varaibles to content
+        // call loadFeed in the beforeEach with an id 0
+
+        //call another loadFeed with a new id 1
+
+        //call done
+
+        //compare contents in statements
+
+        //they should not equal each other
+
+
+
         var oldCount = $('.feed').find('.entry').length;
         /* This test checks when a new feed is loaded
          * by the loadFeed function that the content actually changes.

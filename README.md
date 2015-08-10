@@ -9,7 +9,7 @@ Navigate into the folder and double click on index.html
 
 ## Demo
 
-You can visit the demo here:
+You can visit the demo here: http://qtheninja.github.io/jasmineTeasing/
 
 ## CITATIONS
 

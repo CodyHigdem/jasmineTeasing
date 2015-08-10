@@ -100,10 +100,6 @@ $(function() {
 
 /*
 
-         In this suite, you are expected to check contents actually change after loading feeds.
-          It means you need to compare contents like DOM after calling loadFeed with different ids.
-
-
 Declare variables to assign contents.
 Call loadFeed in the beforeEach with an id(for example 0).
 Call another loadFeed with a new id(for example 1).

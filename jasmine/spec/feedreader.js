@@ -97,9 +97,18 @@ $(function() {
     });
     /* suite "New Feed Selection"*/
     describe('New Feed Selection', function() {
-        //they should not equal each other but first let's declare them up here
-        var firstFeed, nextFeed, firstHeadline, secondHeadline;
-
+        //they should not equal each other but first let's declare them up here so we can jump in and out
+        var firstFeed, nextFeed;
+        //Psuedo code
+        /* Attempting to check if the loadFeed is loading different content
+        * A few ways to do this is to check content like the headlines, the feed cycle itself
+        * Let's run two loadFeed functions. The first is using id 0, then assign it to firstFeed
+        * I tried using Jquery to select headlines at first but I kept running into some issues
+        * so instead I'm just going to run a doc.innerHTML
+        * The docs suggests I could use .feed or entry.
+        * since I was using entry last time and it wasn't really working. I'm going to use .feed
+        * Then let's run another loadFeed using id 1 and assigne secondFeed the same way as the firstFeed
+        */
 
     beforeEach(function(done){
       loadFeed(0, function(){
@@ -107,14 +116,15 @@ $(function() {
         firstFeed = document.querySelector('.feed').innerHTML;
 
         loadFeed(1, function(){
-          done();
+            secondFeed = document.querySelector('.feed').innerHTML;
+            done(); //don't forget the done! -.-
         });
       });
     });
 
-    it('changes its loaded content', function(done){
+    it('has different content loaded', function(done){
       console.log(document.querySelector('.feed').innerHTML);
-      secondFeed = document.querySelector('.feed').innerHTML;
+
       expect(firstFeed).not.toBe(secondFeed);
       done();
     });

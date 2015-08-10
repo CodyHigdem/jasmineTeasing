@@ -97,8 +97,8 @@ $(function() {
     });
     /* suite "New Feed Selection"*/
     describe('New Feed Selection', function() {
-        //they should not equal each other
-
+        //they should not equal each other but first let's declare them up here
+        var firstFeed, nextFeed, firstHeadline, secondHeadline;
 
 
         var oldCount = $('.feed').find('.entry').length;
@@ -114,15 +114,14 @@ $(function() {
         beforeEach(function(done) {
             //thisshould load the first feed?
             //assign varaibles to content
-            var firstFeed= loadFeed(0, done);
+            firstFeed= loadFeed(0, done);
+            firstHeadline = $('.entry').children('h2').text();
             //call another loadFeed with a new id 1
-            var nextFeed = loadFeed(1,done);
+            nextFeed = loadFeed(1,done);
+            secondHeadline = $('.entry').children('h2').text();
             //call done
             done();
         });
-
-
-
 
         it('loads the feed', function(done) {
             var currentCount = $('.feed').find('.entry').length;
@@ -133,7 +132,7 @@ $(function() {
         });
 
          it('should not match', function() {
-            expect(firstFeed).not.toEqual(nextFeed);
+            expect(firstHeadline).not.toEqual(secondHeadline);
          });
 
     });

@@ -99,10 +99,10 @@ $(function() {
     describe('New Feed Selection', function() {
 
 /*
-        It looks like you misunderstand some concepts of this suite.
+
          In this suite, you are expected to check contents actually change after loading feeds.
           It means you need to compare contents like DOM after calling loadFeed with different ids.
-           For example:
+
 
 Declare variables to assign contents.
 Call loadFeed in the beforeEach with an id(for example 0).

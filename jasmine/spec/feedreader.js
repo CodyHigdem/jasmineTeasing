@@ -101,39 +101,30 @@ $(function() {
         var firstFeed, nextFeed, firstHeadline, secondHeadline;
 
 
-        var oldCount = $('.feed').find('.entry').length;
-        /* This test checks when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         */
+    beforeEach(function(done){
+      loadFeed(0, function(){
+        //doc pull using query selector???
+        firstFeed = document.querySelector('.feed').innerHTML;
 
-        /*
-        * beforeEach to load content for the beginning and second
-        * assign varaibles to content
-        * call loadFeed in the beforeEach with an id 0
-        */
-        beforeEach(function(done) {
-            //thisshould load the first feed?
-            //assign varaibles to content
-            firstFeed= loadFeed(0, done);
-            firstHeadline = $('.entry').children('h2').text();
-            //call another loadFeed with a new id 1
-            nextFeed = loadFeed(1,done);
-            secondHeadline = $('.entry').children('h2').text();
-            //call done
-            done();
+        loadFeed(1, function(){
+          done();
         });
+      });
+    });
 
-        it('loads the feed', function(done) {
-            var currentCount = $('.feed').find('.entry').length;
-            //compare contents in statements
+    it('changes its loaded content', function(done){
+      console.log(document.querySelector('.feed').innerHTML);
+      secondFeed = document.querySelector('.feed').innerHTML;
+      expect(firstFeed).not.toBe(secondFeed);
+      done();
+    });
+  });
 
-            expect(currentCount).not.toEqual(oldCount);
-            done();
-        });
 
-         it('should not match', function() {
-            expect(firstHeadline).not.toEqual(secondHeadline);
-         });
+
+
+
+
+
 
     });
-}());
